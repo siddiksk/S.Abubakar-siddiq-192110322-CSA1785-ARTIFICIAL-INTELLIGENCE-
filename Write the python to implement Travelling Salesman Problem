@@ -1,0 +1,25 @@
+import itertools
+
+def distance(city1, city2):
+    # Returns the Euclidean distance between two cities
+    return ((city1[0] - city2[0]) ** 2 + (city1[1] - city2[1]) ** 2) ** 0.5
+
+def tsp(cities):
+    # Returns the shortest route and its distance
+    best_distance = float('inf')
+    for perm in itertools.permutations(cities):
+        distance = 0
+        for i in range(len(perm) - 1):
+            distance += distance(perm[i], perm[i + 1])
+        distance += distance(perm[-1], perm[0])
+        if distance < best_distance:
+            best_distance = distance
+            best_route = perm
+    return best_route, best_distance
+
+# Example usage:
+if __name__ == '__main__':
+    cities = [(0, 0), (1, 1), (2, 2), (3, 3)]
+    route, distance = tsp(cities)
+    print("Shortest route:", route)
+    print("Shortest distance:", distance)
