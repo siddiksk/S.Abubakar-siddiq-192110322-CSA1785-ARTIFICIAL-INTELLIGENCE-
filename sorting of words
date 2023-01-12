@@ -1,0 +1,6 @@
+mystr=input("enter the name or words or statememt:")
+words=[word.lower() for word in mystr.split()]
+words.sort()
+print("the sorted words are:")
+for word in words:
+    print (word)
